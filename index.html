@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet", href="style.css">
+</head>
+<body>
+    <header id="header" class="header">BUILD YOUR BURGUER</header>
+    <section class="section">
+    <div class="div_endereco">
+        <img src="/img/logo.png" class="logo" alt="Logo">
+        <h1 class="endereco">
+            <p class="titulo">CRAFT BURGUER</p>
+            Rua São Mateus, 132
+            <a> • Mais informações</a>
+            <p>Loja Fechada no momento, abre hoje às 18:00</p>
+        </h1>
+    </div>
+    <p class="itens titulo_principal">
+            ESCOLHA OS ITENS DO SEU HAMBURGUER
+    </p>
+    <div class="bloco_ingredientes">
+        <p class="titulo_secao">Selecione o seu pão preferido.</p>
+        <div class="paes">
+            <a>
+                <img src="/img/pao_brioche.png" 
+                alt="pao_brioche" 
+                class="card_item pao_hover"
+                data-id="1">
+            </a>
+            <a>
+                <img src="/img/pao_australiano.png" 
+                alt="pao_australiano" 
+                class="card_item pao_hover"
+                data-id="2">
+            </a>
+        </div>
+        <p class="titulo_secao">Selecione o(s) bife(s) desejado(s).</p>
+        <div class="bifes">
+            <a>
+                <img src="/img/bife_boi.png" 
+                alt="bife_boi" 
+                class="card_item bife_hover"
+                data-id="3">
+                <div class="controle_quantidade" data-id="3">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-3">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+            <a>
+                <img src="/img/bife_frango.png" 
+                alt="bife_frango" 
+                class="card_item bife_hover"
+                data-id="4">
+                <div class="controle_quantidade" data-id="4">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-4">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+        </div>
+        <p class="titulo_secao">Selecione sua salada.</p>
+        <div class="bifes">
+            <a>
+                <img src="/img/alface.png" 
+                alt="bife_boi" 
+                class="card_item bife_hover"
+                data-id="5">
+                <div class="controle_quantidade" data-id="5">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-5">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+            <a>
+                <img src="/img/tomate.png" 
+                alt="bife_frango" 
+                class="card_item bife_hover"
+                data-id="6">
+                <div class="controle_quantidade" data-id="6">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-6">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+            <a>
+                <img src="/img/cebola_roxa.png" 
+                alt="bife_frango" 
+                class="card_item bife_hover"
+                data-id="7">
+                <div class="controle_quantidade" data-id="7">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-7">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+            <a>
+                <img src="/img/cebola_caramelizada.png" 
+                alt="bife_frango" 
+                class="card_item bife_hover"
+                data-id="8">
+                <div class="controle_quantidade" data-id="8">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-8">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+            <a>
+                <img src="/img/picles.png" 
+                alt="bife_frango" 
+                class="card_item bife_hover"
+                data-id="9">
+                <div class="controle_quantidade" data-id="9">
+                    <button data-acao="remover">−</button>
+                    <span id="qnt-9">0</span>
+                    <button data-acao="adicionar">+</button>
+                </div>
+            </a>
+        </div>
+    </div>
+    </section>
+<script src="script.js" defer></script>
+</body>
+</html>

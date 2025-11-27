@@ -55,7 +55,7 @@ function horarioFuncionamento () {
         //Depois acc=hora ¬ acc*60 e soma m=minuto (segundo argumento)
         //Temos hora*60+minuto
         const hAbreEmMin = horarioHoje.abre.split(':').map(Number).reduce((h, m) => h*60 + m, 0);
-        const hFechaEmMin = horarioHoje.fecha.split(':').map(Number).reduce((h, m) => h*60 +m, 0);
+        const hFechaEmMin = horarioHoje.fecha.split(':').map(Number).reduce((h, m) => h*60 +m, 0) + 24*60;
         let hFechaEmMinOntem = 0
         if (horarioOntem.abre) {
             const [hfechaOntem, minFechaOntem] = horarioOntem.fecha.split(':').map(Number);

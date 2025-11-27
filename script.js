@@ -1,7 +1,7 @@
 //ARRAY DE INGREDIENTES DISPONÍVEIS
 const ingredientes = [
     {id: 1, nome: "Pão Brioche", preco: 3.50, limite: 1, categoria: 'pao'},
-    {id: 2, nome: "Pão Australino", preco: 4.50, limite: 1, categoria: 'pao'},
+    {id: 2, nome: "Pão Australiano", preco: 4.50, limite: 1, categoria: 'pao'},
     {id: 3, nome: "Blend Bovino", preco: 12.00, limite: 3, categoria: 'carne'},
     {id: 4, nome: "Bife de Frango", preco: 10.00, limite: 3, categoria: 'carne'},
     {id: 5, nome: "Bacon", preco: 4.00, limite: 2, categoria: 'extra'},
@@ -92,29 +92,25 @@ function alterarQuantidade(evento) {
     const ingredienteData = encontrarIngrediente(itemID);
     const itemNoHamburguer = meuHamburguer.find(i => i.id === itemID);
     const botao = evento.target.closest('button');
-    const resumo = document.querySelector('.resumo')
     
     if (botao) {
         const acao = botao.dataset.acao;
         if (acao === 'adicionar') {
-            if (!itemNoHamburguer) {
-                meuHamburguer.push({...ingredienteData, quantidade: 1});
-            } else {
-                if (itemNoHamburguer.quantidade === limiteItem) {
-                    alert(`Limite desse item atingido! (${limiteItem})`);
-                } else {
-                    const qntcarnes = meuHamburguer
+            if (ingredienteData.categoria === 'carne'){
+                const qntcarnes = meuHamburguer
                     .filter(i => i.categoria === 'carne')
                     .reduce((acumulador, item) => acumulador + item.quantidade, 0);
-                    if (ingredienteData.categoria === 'carne') {
-                        if (qntcarnes > 2) {
-                            alert("Limite de carnes atingido! (3)")
-                            return;
-                        } else {
-                            itemNoHamburguer.quantidade++;
-                        }
+                if (qntcarnes >= limiteCarnes) {
+                    alert("Limite de carnes atingido! (3)")
+                                return;
+                }
+                if (!itemNoHamburguer) {
+                    meuHamburguer.push({...ingredienteData, quantidade: 1});
+                } else {
+                    if (itemNoHamburguer.quantidade === limiteItem) {
+                        alert(`Limite desse item atingido! (${limiteItem})`);
                     } else {
-                        itemNoHamburguer.quantidade++;
+                         itemNoHamburguer.quantidade++;
                     }
                 }
             }
@@ -129,8 +125,7 @@ function alterarQuantidade(evento) {
                 }
             }
         }
-        console.log(meuHamburguer)
-        }
+    }
 }
 
 //CONTROLADOR DO SPAN QUANTIDADE
@@ -211,8 +206,6 @@ function selecionarPao(evento) {
 
     meuHamburguer = meuHamburguer.filter(i => i.categoria != 'pao')
     meuHamburguer.push({...pao, quantidade: 1});
-
-    console.log (meuHamburguer)
 }
 
 //LISTENER DO GRUPO PÃES

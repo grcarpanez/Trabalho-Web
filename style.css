@@ -11,10 +11,11 @@ body {
 }
 .section {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-columns: 1fr 500px 350px 1fr;
     width: 100%;
     gap: 30px;
     padding-top: 20px;
+    padding-bottom: 200px;
 }
 .header {
     display: flex;
@@ -69,33 +70,33 @@ body {
     object-fit: cover;
     transition: all 0.3s ease;
 }
-.pao_hover:hover{
+.hover_efeito:hover{
     filter: brightness(90%);
     transform: translateY(-3px);
+    transition: all 0.2s ease;
 }
-.card_item.pao {
-    height: 190px;
-    width: 150px;
-    border: 3px solid #D16A2F;
-    box-shadow: 0 0 10px rgba(209, 106, 47, 0.8);
-    transition: all 0.3s ease;
-}
-.bifes {
-    display:flex;
-    flex-direction: row;
+.grupo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    justify-content: flex-start;
+    max-width: 600px;
 }
-.bife_hover:hover{
-    filter: brightness(90%);
-    transform: translateY(-3px);
-}
-.card_item.bife {
+.card_item.selecionado {
     height: 190px;
     width: 154px;
     border: 3px solid #D16A2F;
     box-shadow: 0 0 10px rgba(209, 106, 47, 0.8);
     transition: all 0.3s ease;
+}
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.item p {
+    width: 100%;
+    text-align: start;
 }
 .controle_quantidade {
     display: flex;
@@ -103,20 +104,41 @@ body {
     width: 75px;
     border-radius: 12px;
     font-size: 18px;
-    gap: 7px;
     justify-content: space-around;
-    align-items: center;
 }
 .controle_quantidade button {
     font-size: 18px;
     font-weight: bolder;
     background-color: #CB9134;
+    border-radius: 100%;
     border: none;
     color: #99391F;
 }
-.bifes a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
+.resumo {
+    position: sticky;
+    grid-column: 3 / 4;
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(209, 79,47, 0.2);
+    top: 20px;
+    border-radius: 30px;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    opacity: 0;
+}
+.resumo h1 {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 22px;
+}
+.resumo p {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 10px;
+}
+.resumo div {
+    font-weight: bolder;
+    font-size: 18px;
+}
+.opacidade {
+    opacity: 1;
 }

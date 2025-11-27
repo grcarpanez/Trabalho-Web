@@ -4,124 +4,227 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet", href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header id="header" class="header">BUILD YOUR BURGUER</header>
     <section class="section">
     <div class="div_endereco">
         <img src="/img/logo.png" class="logo" alt="Logo">
-        <h1 class="endereco">
+        <div class="endereco">
             <p class="titulo">CRAFT BURGUER</p>
             Rua São Mateus, 132
             <a> • Mais informações</a>
-            <p>Loja Fechada no momento, abre hoje às 18:00</p>
-        </h1>
+            <p class="status_loja"></p>
+        </div>
     </div>
     <p class="itens titulo_principal">
             ESCOLHA OS ITENS DO SEU HAMBURGUER
     </p>
     <div class="bloco_ingredientes">
         <p class="titulo_secao">Selecione o seu pão preferido.</p>
-        <div class="paes">
-            <a>
+        <div class="grupo paes">
+            <div class="item-pao" data-id=1>
                 <img src="/img/pao_brioche.png" 
                 alt="pao_brioche" 
-                class="card_item pao_hover"
+                class="card_item hover_efeito"
                 data-id="1">
-            </a>
-            <a>
+                <p>Pão Brioche</p>
+            </div>
+            <div class="item-pao" data-id=2>
                 <img src="/img/pao_australiano.png" 
                 alt="pao_australiano" 
-                class="card_item pao_hover"
+                class="card_item hover_efeito"
                 data-id="2">
-            </a>
+                <p>Pão Australiano</p>
+            </div>
         </div>
         <p class="titulo_secao">Selecione o(s) bife(s) desejado(s).</p>
-        <div class="bifes">
-            <a>
+        <div class="grupo bifes">
+            <div class="item" data-id="3">
                 <img src="/img/bife_boi.png" 
                 alt="bife_boi" 
-                class="card_item bife_hover"
+                class="card_item hover_efeito"
                 data-id="3">
+                <p>Blend Bovino 180g</p>
                 <div class="controle_quantidade" data-id="3">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-3">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="3" data-acao="remover">−</button>
+                    <span data-id="3">0</span>
+                    <button data-id="3" data-acao="adicionar">+</button>
                 </div>
-            </a>
-            <a>
+            </div>
+            <div class="item" data-id="4">
                 <img src="/img/bife_frango.png" 
                 alt="bife_frango" 
-                class="card_item bife_hover"
+                class="card_item hover_efeito"
                 data-id="4">
+                <p>Artesanal de Frango 180g</p>
                 <div class="controle_quantidade" data-id="4">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-4">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="4" data-acao="remover">−</button>
+                    <span data-id="4">0</span>
+                    <button data-id="4" data-acao="adicionar">+</button>
                 </div>
-            </a>
+            </div>
         </div>
-        <p class="titulo_secao">Selecione sua salada.</p>
-        <div class="bifes">
-            <a>
-                <img src="/img/alface.png" 
+        <p class="titulo_secao">Selecione o(s) item(ns) extra.</p>
+        <div class="grupo extra">
+            <div class="item" data-id="5">
+                <img src="/img/bacon.png" 
                 alt="bife_boi" 
-                class="card_item bife_hover"
+                class="card_item hover_efeito"
                 data-id="5">
+                <p>Bacon</p>
                 <div class="controle_quantidade" data-id="5">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-5">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="5" data-acao="remover">−</button>
+                    <span data-id="5">0</span>
+                    <button data-id="5" data-acao="adicionar">+</button>
                 </div>
-            </a>
-            <a>
-                <img src="/img/tomate.png" 
+            </div>
+            <div class="item" data-id="6">
+                <img src="/img/ovo.png" 
                 alt="bife_frango" 
-                class="card_item bife_hover"
+                class="card_item hover_efeito"
                 data-id="6">
+                <p>Ovo</p>
                 <div class="controle_quantidade" data-id="6">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-6">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="6" data-acao="remover">−</button>
+                    <span data-id="6">0</span>
+                    <button data-id="6" data-acao="adicionar">+</button>
                 </div>
-            </a>
-            <a>
-                <img src="/img/cebola_roxa.png" 
-                alt="bife_frango" 
-                class="card_item bife_hover"
+            </div>
+        </div>
+        <p class="titulo_secao">Selecione o(s) queijo(s) desejado(s).</p>
+        <div class="grupo queijos">
+            <div class="item" data-id="7">
+                <img src="/img/quejo_mussarela.png" 
+                alt="bife_boi" 
+                class="card_item hover_efeito"
                 data-id="7">
+                <p>Queijo Mussarela</p>
                 <div class="controle_quantidade" data-id="7">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-7">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="7" data-acao="remover">−</button>
+                    <span data-id="7">0</span>
+                    <button data-id="7" data-acao="adicionar">+</button>
                 </div>
-            </a>
-            <a>
-                <img src="/img/cebola_caramelizada.png" 
+            </div>
+            <div class="item" data-id="8">
+                <img src="/img/queijo_prato.png" 
                 alt="bife_frango" 
-                class="card_item bife_hover"
+                class="card_item hover_efeito"
                 data-id="8">
+                <p>Queijo Prato</p>
                 <div class="controle_quantidade" data-id="8">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-8">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="8" data-acao="remover">−</button>
+                    <span data-id="8">0</span>
+                    <button data-id="8" data-acao="adicionar">+</button>
                 </div>
-            </a>
-            <a>
-                <img src="/img/picles.png" 
-                alt="bife_frango" 
-                class="card_item bife_hover"
+            </div>
+            <div class="item" data-id="9">
+                <img src="/img/gorgonzola.png" 
+                alt="bife_boi" 
+                class="card_item hover_efeito"
                 data-id="9">
+                <p>Creme de Gorgonzola</p>
                 <div class="controle_quantidade" data-id="9">
-                    <button data-acao="remover">−</button>
-                    <span id="qnt-9">0</span>
-                    <button data-acao="adicionar">+</button>
+                    <button data-id="9" data-acao="remover">−</button>
+                    <span data-id="9">0</span>
+                    <button data-id="9" data-acao="adicionar">+</button>
                 </div>
-            </a>
+            </div>
+            <div class="item" data-id="10">
+                <img src="/img/catupiry.png" 
+                alt="bife_frango" 
+                class="card_item hover_efeito"
+                data-id="10">
+                <p>Catupiry</p>
+                <div class="controle_quantidade" data-id="10">
+                    <button data-id="10" data-acao="remover">−</button>
+                    <span data-id="10">0</span>
+                    <button data-id="10" data-acao="adicionar">+</button>
+                </div>
+            </div>
+            <div class="item" data-id="11">
+                <img src="/img/cheddar.png" 
+                alt="bife_frango" 
+                class="card_item hover_efeito"
+                data-id="11">
+                <p>Cheddar Cremoso</p>
+                <div class="controle_quantidade" data-id="11">
+                    <button data-id="11" data-acao="remover">−</button>
+                    <span data-id="11">0</span>
+                    <button data-id="11" data-acao="adicionar">+</button>
+                </div>
+            </div>
+        </div>
+        <p class="titulo_secao">Selecione os itens de salada.</p>
+        <div class="grupo salada">
+            <div class="item" data-id="12">
+                <img src="/img/alface.png" 
+                alt="alface" 
+                class="card_item hover_efeito"
+                data-id="12">
+                <p>Alface Americana</p>
+                <div class="controle_quantidade" data-id="12">
+                    <button data-id="12" data-acao="remover">−</button>
+                    <span data-id="12">0</span>
+                    <button data-id="12" data-acao="adicionar">+</button>
+                </div>
+            </div>
+            <div class="item" data-id="13">
+                <img src="/img/tomate.png" 
+                alt="tomate" 
+                class="card_item hover_efeito"
+                data-id="13">
+                <p>Tomate</p>
+                <div class="controle_quantidade" data-id="13">
+                    <button data-id="13" data-acao="remover">−</button>
+                    <span data-id="13">0</span>
+                    <button data-id="13" data-acao="adicionar">+</button>
+                </div>
+            </div>
+            <div class="item" data-id="14">
+                <img src="/img/cebola_roxa.png" 
+                alt="cebola_roxa" 
+                class="card_item hover_efeito"
+                data-id="14">
+                <p>Cebola Roxa</p>
+                <div class="controle_quantidade" data-id="14">
+                    <button data-id="14" data-acao="remover">−</button>
+                    <span data-id="14">0</span>
+                    <button data-id="14" data-acao="adicionar">+</button>
+                </div>
+            </div>
+            <div class="item" data-id="15">
+                <img src="/img/cebola_caramelizada.png" 
+                alt="cebola_caramelizada" 
+                class="card_item hover_efeito"
+                data-id="15">
+                <p>Cebole Caramelizada</p>
+                <div class="controle_quantidade" data-id="15">
+                    <button data-id="15" data-acao="remover">−</button>
+                    <span data-id="15">0</span>
+                    <button data-id="15" data-acao="adicionar">+</button>
+                </div>
+            </div>
+            <div class="item" data-id="16">
+                <img src="/img/picles.png" 
+                alt="picles" 
+                class="card_item hover_efeito"
+                data-id="16">
+                <p>Picles de Pepino</p>
+                <div class="controle_quantidade" data-id="16">
+                    <button data-id="16" data-acao="remover">−</button>
+                    <span data-id="16">0</span>
+                    <button data-id="16" data-acao="adicionar">+</button>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="resumo" data-id="resumo">
+        <h1>Meu Hamburguer</h1>
+    </div>
     </section>
+<!-- defer só roda o js depois do html carregado -->
 <script src="script.js" defer></script>
 </body>
 </html>

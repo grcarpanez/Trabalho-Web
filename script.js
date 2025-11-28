@@ -33,6 +33,8 @@ const nomeDias = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 //LISTAGEM DE ITENS DO HAMBURGUER
 let meuHamburguer = []
 
+let observacao = '';
+
 //BUSCADOR DE ITENS E LIMITADOR DE QUANTIDADE CONJUGADA
 const encontrarIngrediente = (id) => ingredientes.find(i => i.id == id);
 const limiteCarnes = 3;
@@ -101,12 +103,12 @@ function alterarQuantidade(evento) {
                 .filter(i => i.categoria === 'carne')
                 .reduce((acumulador, item) => acumulador + item.quantidade, 0);
                 if (qntcarnes >= limiteCarnes) {
-                        alert("Limite de carnes atingido! (3)")
+                        mostrarFeedback("Limite de carnes atingido! (3)", "falha")
                         return;
                 }
                 if (itemNoHamburguer) {
                     if (itemNoHamburguer.quantidade === limiteItem) {
-                        alert(`Limite desse item atingido! (${limiteItem})`);
+                        mostrarFeedback(`Limite desse item atingido! (${limiteItem})`), "falha";
                     } else {
                         itemNoHamburguer.quantidade++;
                     }      
@@ -116,7 +118,7 @@ function alterarQuantidade(evento) {
             } else {
                 if (itemNoHamburguer) {
                     if (itemNoHamburguer.quantidade === limiteItem) {
-                        alert(`Limite desse item atingido! (${limiteItem})`);
+                        mostrarFeedback(`Limite desse item atingido! (${limiteItem})`, "falha");
                     } else {
                         itemNoHamburguer.quantidade++;
                     }      
@@ -165,6 +167,51 @@ function atualizarEstilos() {
     })
 }
 
+//CONTROLADOR DA OBSERVAÇÃO
+function gerenciarObservacao() {
+    const resumo = document.querySelector('.resumo');
+    
+    // Remove formulário anterior se existir
+    const formAnterior = resumo.querySelector('.form_observacao');
+    const observacaoAnterior = resumo.querySelector('.observacao_texto');
+    
+    if (formAnterior) formAnterior.remove();
+    if (observacaoAnterior) observacaoAnterior.remove();
+    
+    // Cria o formulário
+    const formObs = document.createElement('div');
+    formObs.className = 'form_observacao mostrar';
+    formObs.innerHTML = `
+        <textarea class="textarea_observacao" placeholder="Ex: Hamburger bem passado, maionese à parte...">${observacao}</textarea>
+        <div class="botoes_observacao">
+            <button class="btn_cancelar" type="button">Cancelar</button>
+            <button class="btn_confirmar" type="button">Confirmar</button>
+        </div>
+    `;
+    
+    // Insere antes do botão de observação
+    const btnObservacao = resumo.querySelector('.btn_observacao');
+    resumo.insertBefore(formObs, btnObservacao);
+    
+    // Foca no textarea
+    formObs.querySelector('.textarea_observacao').focus();
+    
+    // Evento confirmar
+    formObs.querySelector('.btn_confirmar').addEventListener('click', () => {
+        let texto = formObs.querySelector('.textarea_observacao').value.trim();
+        observacao = texto;
+        formObs.remove();
+        atualizarResumo();
+        mostrarFeedback('Observação adicionada!', 'sucesso');
+    });
+    
+    // Evento cancelar
+    formObs.querySelector('.btn_cancelar').addEventListener('click', () => {
+        observacao = ""
+        formObs.remove();
+    });
+}
+
 //CONTROLADOR DA COMANDA DO CLIENTE
 function atualizarResumo () {
     const divResumo = document.querySelector('.resumo')
@@ -175,6 +222,22 @@ function atualizarResumo () {
     divResumo.querySelectorAll('div').forEach(div => {
         div.remove();
     })
+
+    const h1 = divResumo.querySelector('h1');
+    const btnObservacao = divResumo.querySelector('.btn_observacao');
+    
+    divResumo.innerHTML = '';
+    divResumo.appendChild(h1);
+    
+    // Mostra observação se existir
+    if (observacao) {
+        const divObs = document.createElement('div');
+        divObs.className = 'observacao_texto';
+        divObs.innerHTML = `<strong>Observação:</strong> ${observacao}`;
+        divResumo.appendChild(divObs);
+    }
+    
+    divResumo.appendChild(btnObservacao);
     let precoItem = 0
     meuHamburguer.forEach(item => {
         const pItem = document.createElement('p');
@@ -191,6 +254,16 @@ function atualizarResumo () {
     const pPreco = document.createElement('div')
     pPreco.textContent = `Total: R$ ${precoItem.toFixed(2).replace(".", ",")}`
     divResumo.appendChild(pPreco);
+
+    const btnConfirma = document.createElement('button');
+    btnConfirma.className = 'btn_confirma_pedido hover_efeito'
+    btnConfirma.textContent = "Confirmar Pedido"
+    divResumo.appendChild( btnConfirma);
+
+    // Evento confirmar
+    divResumo.querySelector('.btn_confirma_pedido').addEventListener('click', () => {
+        confirmarPedido();
+    });
 }
 
 //CONTROLADOR DO PAO SELECIONADO - ITEM EXCLUSIVO E OBRIGATÓRIO
@@ -218,10 +291,43 @@ function selecionarPao(evento) {
     meuHamburguer.push({...pao, quantidade: 1});
 }
 
+//CONTROLADOR AUXILIAR PARA ATUALIZAR DOM, ESTILO E RESUMO
 function atuzlizarTudo (evento) {
     atualizarDOM();
     atualizarEstilos()
     atualizarResumo();
+}
+
+function mostrarFeedback(mensagem, tipo) {
+    // Código da função de feedback que te mostrei anteriormente
+    const feedback = document.createElement('div');
+    feedback.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        z-index: 1000;
+        background: ${tipo === 'sucesso' ? '#4CAF50' : '#f44336'};
+        animation: slideInRight 0.3s ease-out;
+    `;
+    feedback.textContent = mensagem;
+    document.body.appendChild(feedback);
+    
+    setTimeout(() => {
+        feedback.remove();
+    }, 3000);
+}
+
+function confirmarPedido () {
+    obrigatorio = meuHamburguer.filter(i => i.categoria === 'pao')
+    if (obrigatorio.lenght > 0) {
+        mostrarFeedback('Pedido Confirmado!', 'sucesso')
+    } else {
+        mostrarFeedback('Pão não escolhido', 'falha')
+    }  
 }
 
 //LISTENER DO GRUPO PÃES
@@ -243,3 +349,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mensagem = horarioFuncionamento();
     document.querySelector('.status_loja').textContent = mensagem;
 })
+
+//LISTENER DO BOTÃO DE ADICIONAR OBS
+document.querySelector('.btn_observacao').addEventListener('click', gerenciarObservacao);

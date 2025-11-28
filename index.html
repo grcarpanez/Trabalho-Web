@@ -14,7 +14,7 @@
         <div class="endereco">
             <p class="titulo">CRAFT BURGUER</p>
             Rua São Mateus, 132
-            <a> • Mais informações</a>
+            <p id="info-loja" class="sr-only" aria-hidden="true"></p>
             <p class="status_loja"></p>
         </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="bloco_ingredientes">
         <p class="titulo_secao">Selecione o seu pão preferido.</p>
         <div class="grupo paes">
-            <div class="item-pao" data-id=1>
+            <div class="item-pao" data-id=1 tabindex="0" role="button" aria-pressed="false">
                 <img src="img/pao_brioche.png" 
                 alt="pao_brioche" 
                 class="card_item hover_efeito"
@@ -222,6 +222,7 @@
     </div>
     <div class="resumo" data-id="resumo">
         <h1>Meu Hamburguer</h1>
+        <button class="btn_observacao">+ Adicionar Observação</button>
     </div>
     </section>
 <!-- defer só roda o js depois do html carregado -->

@@ -96,24 +96,34 @@ function alterarQuantidade(evento) {
     if (botao) {
         const acao = botao.dataset.acao;
         if (acao === 'adicionar') {
-            if (ingredienteData.categoria === 'carne'){
+            if (ingredienteData.categoria === 'carne') {
                 const qntcarnes = meuHamburguer
-                    .filter(i => i.categoria === 'carne')
-                    .reduce((acumulador, item) => acumulador + item.quantidade, 0);
+                .filter(i => i.categoria === 'carne')
+                .reduce((acumulador, item) => acumulador + item.quantidade, 0);
                 if (qntcarnes >= limiteCarnes) {
-                    alert("Limite de carnes atingido! (3)")
-                                return;
+                        alert("Limite de carnes atingido! (3)")
+                        return;
                 }
-                if (!itemNoHamburguer) {
-                    meuHamburguer.push({...ingredienteData, quantidade: 1});
-                } else {
+                if (itemNoHamburguer) {
                     if (itemNoHamburguer.quantidade === limiteItem) {
                         alert(`Limite desse item atingido! (${limiteItem})`);
                     } else {
-                         itemNoHamburguer.quantidade++;
-                    }
+                        itemNoHamburguer.quantidade++;
+                    }      
+                } else {
+                    meuHamburguer.push({...ingredienteData, quantidade: 1});
                 }
-            }
+            } else {
+                if (itemNoHamburguer) {
+                    if (itemNoHamburguer.quantidade === limiteItem) {
+                        alert(`Limite desse item atingido! (${limiteItem})`);
+                    } else {
+                        itemNoHamburguer.quantidade++;
+                    }      
+                } else {
+                    meuHamburguer.push({...ingredienteData, quantidade: 1});
+                } 
+            }      
         } else if (acao === 'remover') {
             if (!itemNoHamburguer) {
                 return;
@@ -208,6 +218,12 @@ function selecionarPao(evento) {
     meuHamburguer.push({...pao, quantidade: 1});
 }
 
+function atuzlizarTudo (evento) {
+    atualizarDOM();
+    atualizarEstilos()
+    atualizarResumo();
+}
+
 //LISTENER DO GRUPO PÃES
 document.querySelector('.paes').addEventListener('click', (evento) => {
     selecionarPao(evento);
@@ -218,9 +234,7 @@ document.querySelector('.paes').addEventListener('click', (evento) => {
 //LISTENER DOS GRUPOS NÃO PÃES
 document.querySelectorAll('.grupo:not(.paes)').forEach(grupo => grupo.addEventListener('click', (evento) => {
     alterarQuantidade(evento);
-    atualizarDOM();
-    atualizarEstilos()
-    atualizarResumo();
+    atuzlizarTudo(evento)
     })
 );
 
